@@ -28,7 +28,7 @@ function calc(){
 }
 $("lang").addEventListener("change",e=>{lang=e.target.value;applyLang()});
 $("theme").addEventListener("click",()=>{const dark=document.body.dataset.theme!=="dark";document.body.dataset.theme=dark?"dark":"light";localStorage.theme=dark?"dark":"light";applyLang()});
-document.body.dataset.theme=localStorage.theme||"light";
+document.body.dataset.theme=localStorage.theme||"dark";
 $("heroImg").src=IMG.boots;$("bootIcon").src=IMG.boots;
 $("i-vg").src=IMG.vertgely;$("i-rg").src=IMG.rougely;$("i-bg").src=IMG.blugely;$("i-f").src=IMG.fresa;$("i-b").src=IMG.blue;$("i-v").src=IMG.menta;
 ids=["vertgely","rougely","blugely","fresa","blue","vert"].forEach(id=>$(id).addEventListener("input",calc));
