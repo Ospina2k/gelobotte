@@ -1,12 +1,24 @@
 <!doctype html>
-<html lang="es">
+<html lang="es" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Calculadora de Gelobottes</title>
+  <script>
+  (function(){
+    var theme=localStorage.getItem("gelobotte-theme");
+    theme=theme==="light"?"light":"dark";
+    document.documentElement.setAttribute("data-theme",theme);
+    var lang=localStorage.getItem("gelobotte-lang");
+    if(lang==="en"||lang==="fr"||lang==="ar"||lang==="es"){
+      document.documentElement.lang=lang;
+      document.documentElement.dir=lang==="ar"?"rtl":"ltr";
+    }
+  })();
+  </script>
   <link rel="stylesheet" href="./styles.css">
 </head>
-<body>
+<body data-theme="dark">
 <div class="wrap">
 <div class="top">
 <div></div>
@@ -14,7 +26,7 @@
 <select id="lang" class="select" aria-label="Language">
 <option value="es">🇪🇸 Español</option><option value="en">🇬🇧 English</option><option value="fr">🇫🇷 Français</option><option value="ar">🇸🇦 العربية</option>
 </select>
-<button id="theme" class="btn">🌙 <span id="themeText">Modo oscuro</span></button>
+<button id="theme" class="btn">☀️ <span id="themeText">Modo claro</span></button>
 </div>
 </div>
 

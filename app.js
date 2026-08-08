@@ -5,11 +5,11 @@ en:{title:"Jelloboots Calculator",subtitle:"Enter your inventory. The calculator
 fr:{title:"Calculateur de Gelobottes",subtitle:"Entrez votre inventaire. Le calculateur utilise les Gely déjà possédés et convertit 2 gelées en 1 Gely si nécessaire.",inventory:"Inventaire",vertgely:"Vertgely",rougely:"Rougely",blugely:"Blugely",fresa:"Gelée à la Fraise",blue:"Gelée Bleutée",menta:"Gelée à la Menthe",waterHint:"L'eau est considérée comme infinie, vous n'avez donc pas besoin de la saisir.",maximum:"Maximum de Gelobottes",boots:"GELOBOTTES",limitFresa:"Limite Fraise",limitBlue:"Limite Bleutée",limitVert:"Limite Menthe",recipeTitle:"📜 Recette pour 1 Gelobotte",recipeNote:"Le calcul considère que 2 gelées de la couleur correspondante fabriquent 1 Gely. Les Gely déjà possédés comptent comme matière première convertie.",stepsTitle:"Étapes",beforeTitle:"Inventaire avant les bottes",afterTitle:"Inventaire après fabrication",material:"Matériau",quantity:"Quantité",remaining:"Restant",footer:"Recette : 10 Eau + 6 Vertgely + 6 Rougely + 6 Blugely + 5 Gelée à la Fraise + 5 Gelée Bleutée = 1 Gelobotte",make:"Fabriquer",spend:"Dépense",bootsAction:"Fabriquer",water:"Eau"},
 ar:{title:"حاسبة أحذية الجيلي",subtitle:"أدخل مخزونك. تستخدم الحاسبة الـ Gely الموجودة لديك وتحسب تحويل 2 من الجيلي إلى 1 Gely عند الحاجة.",inventory:"المخزون",vertgely:"جيلي أخضر (Vertgely)",rougely:"جيلي أحمر (Rougely)",blugely:"جيلي أزرق (Blugely)",fresa:"جيلي الفراولة",blue:"جيلي أزرق فاتح",menta:"جيلي النعناع",waterHint:"الماء غير محدود، لذلك لا تحتاج إلى إدخاله.",maximum:"الحد الأقصى من الأحذية",boots:"أحذية الجيلي",limitFresa:"حد الفراولة",limitBlue:"حد الأزرق",limitVert:"حد النعناع",recipeTitle:"📜 وصفة حذاء جيلي واحد",recipeNote:"يتم احتساب 2 من الجيلي المطابق لصناعة 1 Gely. الـ Gely الموجود لديك يُحسب كمادة خام محوّلة.",stepsTitle:"الخطوات",beforeTitle:"المخزون قبل صناعة الأحذية",afterTitle:"المخزون بعد صناعة كل شيء",material:"المادة",quantity:"الكمية",remaining:"المتبقي",footer:"الوصفة: 10 ماء + 6 Vertgely + 6 Rougely + 6 Blugely + 5 جيلي الفراولة + 5 جيلي أزرق فاتح = حذاء جيلي واحد",make:"صناعة",spend:"الاستهلاك",bootsAction:"صناعة",water:"الماء"}};
 
-let lang="es";
+const LANGS=["es","en","fr","ar"];let lang=LANGS.includes(localStorage.getItem("gelobotte-lang"))?localStorage.getItem("gelobotte-lang"):"es";
 function applyLang(){
  const t=T[lang];document.documentElement.lang=lang;document.documentElement.dir=lang==="ar"?"rtl":"ltr";
  document.querySelectorAll("[data-i18n]").forEach(e=>{const k=e.dataset.i18n;if(t[k])e.textContent=t[k]});
- $("themeText").textContent=document.body.dataset.theme==="dark"?(lang==="es"?"Modo claro":lang==="en"?"Light mode":lang==="fr"?"Mode clair":"الوضع الفاتح"):(lang==="es"?"Modo oscuro":lang==="en"?"Dark mode":lang==="fr"?"Mode sombre":"الوضع الداكن");
+ $("themeText").textContent=document.documentElement.dataset.theme==="dark"?(lang==="es"?"Modo claro":lang==="en"?"Light mode":lang==="fr"?"Mode clair":"الوضع الفاتح"):(lang==="es"?"Modo oscuro":lang==="en"?"Dark mode":lang==="fr"?"Mode sombre":"الوضع الداكن");
  calc();
 }
 const $=id=>document.getElementById(id),num=id=>Math.max(0,Math.floor(Number($(id).value)||0)),fmt=x=>Math.floor(x).toLocaleString(lang==="ar"?"ar-EG":lang==="en"?"en-US":lang==="fr"?"fr-FR":"es-CO");
@@ -26,16 +26,37 @@ function calc(){
  $("before").innerHTML=row("agua",t.water,"∞")+row("vertgely","Vertgely",before.vg)+row("rougely","Rougely",before.rg)+row("blugely","Blugely",before.bg)+row("fresa",t.fresa,before.f)+row("blue",t.blue,before.b)+row("menta",t.menta,before.v);
  $("after").innerHTML=row("agua",t.water,"∞",true)+row("vertgely","Vertgely",after.vg,true)+row("rougely","Rougely",after.rg,true)+row("blugely","Blugely",after.bg,true)+row("fresa",t.fresa,after.f,true)+row("blue",t.blue,after.b,true)+row("menta",t.menta,after.v,true)+row("boots",t.boots,boots,true);
 }
-$("lang").addEventListener("change",e=>{lang=e.target.value;applyLang()});
-$("theme").addEventListener("click",()=>{
- const dark=document.body.dataset.theme!=="dark";
- document.body.dataset.theme=dark?"dark":"light";
- document.documentElement.dataset.theme=document.body.dataset.theme;
- localStorage.theme=document.body.dataset.theme;
+function setTheme(theme){
+ const next=theme==="light"?"light":"dark";
+ document.documentElement.dataset.theme=next;
+ document.body.dataset.theme=next;
+ localStorage.setItem("gelobotte-theme",next);
+ const btn=$("theme");
+ if(btn){
+  const icon=next==="dark"?"☀️":"🌙";
+  const span=$("themeText");
+  btn.textContent="";
+  btn.append(icon+" ",span||Object.assign(document.createElement("span"),{id:"themeText"}));
+ }
+}
+function loadPrefs(){
+ const savedTheme=localStorage.getItem("gelobotte-theme")||localStorage.getItem("theme");
+ setTheme(savedTheme==="light"?"light":"dark");
+ const savedLang=localStorage.getItem("gelobotte-lang")||localStorage.getItem("lang");
+ lang=LANGS.includes(savedLang)?savedLang:"es";
+ localStorage.setItem("gelobotte-lang",lang);
+ $("lang").value=lang;
+}
+$("lang").addEventListener("change",e=>{
+ lang=e.target.value;
+ localStorage.setItem("gelobotte-lang",lang);
  applyLang();
 });
-document.body.dataset.theme=localStorage.theme||"dark";
-document.documentElement.dataset.theme=document.body.dataset.theme;
+$("theme").addEventListener("click",()=>{
+ setTheme(document.documentElement.dataset.theme==="dark"?"light":"dark");
+ applyLang();
+});
+loadPrefs();
 $("heroImg").src=IMG.boots;$("bootIcon").src=IMG.boots;
 $("i-vg").src=IMG.vertgely;$("i-rg").src=IMG.rougely;$("i-bg").src=IMG.blugely;$("i-f").src=IMG.fresa;$("i-b").src=IMG.blue;$("i-v").src=IMG.menta;
 ids=["vertgely","rougely","blugely","fresa","blue","vert"].forEach(id=>$(id).addEventListener("input",calc));
