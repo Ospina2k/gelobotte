@@ -9,7 +9,7 @@ let lang="es";
 function applyLang(){
  const t=T[lang];document.documentElement.lang=lang;document.documentElement.dir=lang==="ar"?"rtl":"ltr";
  document.querySelectorAll("[data-i18n]").forEach(e=>{const k=e.dataset.i18n;if(t[k])e.textContent=t[k]});
- $("themeText").textContent=document.body.dataset.theme==="dark"?(lang==="es"?"Modo claro":lang==="en"?"Light mode":lang==="fr"?"Mode clair":"الوضع الفاتح"):(lang==="es"?"Modo oscuro":lang==="en"?"Dark mode":lang==="fr"?"Mode sombre":"الوضع الداكن");
+ $("themeText").textContent=document.documentElement.dataset.theme==="dark"?(lang==="es"?"Modo claro":lang==="en"?"Light mode":lang==="fr"?"Mode clair":"الوضع الفاتح"):(lang==="es"?"Modo oscuro":lang==="en"?"Dark mode":lang==="fr"?"Mode sombre":"الوضع الداكن");
  calc();
 }
 const $=id=>document.getElementById(id),num=id=>Math.max(0,Math.floor(Number($(id).value)||0)),fmt=x=>Math.floor(x).toLocaleString(lang==="ar"?"ar-EG":lang==="en"?"en-US":lang==="fr"?"fr-FR":"es-CO");
@@ -27,8 +27,8 @@ function calc(){
  $("after").innerHTML=row("agua",t.water,"∞",true)+row("vertgely","Vertgely",after.vg,true)+row("rougely","Rougely",after.rg,true)+row("blugely","Blugely",after.bg,true)+row("fresa",t.fresa,after.f,true)+row("blue",t.blue,after.b,true)+row("menta",t.menta,after.v,true)+row("boots",t.boots,boots,true);
 }
 $("lang").addEventListener("change",e=>{lang=e.target.value;applyLang()});
-$("theme").addEventListener("click",()=>{const dark=document.body.dataset.theme!=="dark";document.body.dataset.theme=dark?"dark":"light";localStorage.theme=dark?"dark":"light";applyLang()});
-document.body.dataset.theme=localStorage.theme||"dark";
+$("theme").addEventListener("click",()=>{const dark=document.documentElement.dataset.theme!=="dark";document.documentElement.dataset.theme=dark?"dark":"light";localStorage.setItem("gelobotte-theme",dark?"dark":"light");applyLang()});
+document.documentElement.dataset.theme=localStorage.getItem("gelobotte-theme")==="light"?"light":"dark";
 $("heroImg").src=IMG.boots;$("bootIcon").src=IMG.boots;
 $("i-vg").src=IMG.vertgely;$("i-rg").src=IMG.rougely;$("i-bg").src=IMG.blugely;$("i-f").src=IMG.fresa;$("i-b").src=IMG.blue;$("i-v").src=IMG.menta;
 ids=["vertgely","rougely","blugely","fresa","blue","vert"].forEach(id=>$(id).addEventListener("input",calc));
