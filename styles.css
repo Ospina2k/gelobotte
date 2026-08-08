@@ -1,0 +1,23 @@
+:root{--bg:#f4eee8;--card:#fffdf9;--ink:#28221f;--muted:#766c64;--red:#c94f5d;--red2:#8c4650;--line:#e4d8cf;--soft:#fae9e7;--input:#fff;--shadow:0 12px 32px #4d34250d}
+[data-theme=dark]{--bg:#171413;--card:#211d1b;--ink:#f5eee8;--muted:#a99c93;--red:#e86a77;--red2:#f29aa3;--line:#3a302b;--soft:#342124;--input:#2a2522;--shadow:0 12px 32px #0008}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;background:radial-gradient(circle at top,#fff9f4 0,var(--bg) 60%);color:var(--ink);transition:.25s}
+[data-theme=dark] body{background:radial-gradient(circle at top,#302522 0,var(--bg) 62%)}
+.wrap{max-width:1100px;margin:auto;padding:30px 16px 54px}.top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:22px}
+.controls{display:flex;gap:8px}.btn,.select{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;padding:9px 11px;font-weight:700;cursor:pointer}
+.hero{display:flex;align-items:center;gap:25px;margin-bottom:25px}.hero img{width:130px;height:130px;object-fit:contain;filter:drop-shadow(0 12px 12px #5e3d3518)}
+h1{margin:0 0 7px;font-size:clamp(28px,5vw,46px);letter-spacing:-1.5px}.sub{margin:0;color:var(--muted);line-height:1.55}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:var(--shadow)}
+.full{grid-column:1/-1}.card h2{margin:0 0 17px;font-size:18px}
+.fields{display:grid;gap:11px}.field{display:flex;align-items:center;gap:12px}.field img{width:42px;height:42px;object-fit:contain;flex:none}.field label{font-weight:750;flex:1}.field input{width:160px;padding:10px;border:1px solid var(--line);border-radius:10px;background:var(--input);color:var(--ink);font-size:15px;outline:0}.field input:focus{border-color:var(--red);box-shadow:0 0 0 3px #c94f5d1b}
+.hint{font-size:12px;color:var(--muted);line-height:1.5;margin-bottom:0}
+.result{text-align:center;background:linear-gradient(135deg,var(--card),var(--soft));border-color:#e5c2c0}.big{font-size:clamp(54px,9vw,88px);line-height:1;font-weight:900;color:var(--red);letter-spacing:-4px;margin:7px 0}.unit{font-weight:850;color:var(--red2)}
+.booticon{width:72px;height:72px;object-fit:contain;margin-top:3px}
+.limits{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:18px}.lim{background:#ffffff80;border:1px solid var(--line);border-radius:12px;padding:10px;text-align:left}.lim span{display:block;color:var(--muted);font-size:11px}.lim b{font-size:19px}
+[data-theme=dark] .lim{background:#0003}
+.formula{margin-top:18px;background:linear-gradient(135deg,#2f2926,#45302f);color:#fff7f1;border-radius:14px;padding:16px;text-align:left}.formula .title{font-weight:850;margin-bottom:9px}.formula .recipe{display:flex;flex-wrap:wrap;gap:7px;align-items:center}.chip{background:#ffffff16;border:1px solid #ffffff20;padding:6px 8px;border-radius:8px;font-size:12px}.arrow{opacity:.65}.formula .note{margin-top:10px;font-size:11px;opacity:.72;line-height:1.45}
+.step{display:flex;gap:11px;padding:11px 0;border-bottom:1px solid var(--line)}.step:last-child{border:0}.num{width:28px;height:28px;border-radius:50%;background:var(--red);color:#fff;display:grid;place-items:center;font-weight:800;flex:none}.step b{display:block;margin-bottom:3px}.step span{color:var(--muted);font-size:13px;line-height:1.45}
+table{width:100%;border-collapse:collapse;font-size:14px}th,td{padding:10px 7px;border-bottom:1px solid var(--line);text-align:left}th{font-size:11px;color:var(--muted)}td:last-child,th:last-child{text-align:right}.remain{font-weight:850;color:#4f916d}
+.itemcell{display:flex;align-items:center;gap:8px}.itemcell img{width:30px;height:30px;object-fit:contain}
+footer{text-align:center;color:var(--muted);font-size:12px;margin-top:22px}
+@media(max-width:720px){.grid{grid-template-columns:1fr}.full{grid-column:auto}.hero{align-items:flex-start}.hero img{width:90px;height:90px}.limits{grid-template-columns:1fr}.field{align-items:flex-start}.field input{width:120px}}
+@media(max-width:480px){.field img{width:34px;height:34px}.field input{width:105px}.top{align-items:flex-start}.controls{flex-direction:column}}

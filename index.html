@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Calculadora de Gelobottes</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="wrap">
+<div class="top">
+<div></div>
+<div class="controls">
+<select id="lang" class="select" aria-label="Language">
+<option value="es">🇪🇸 Español</option><option value="en">🇬🇧 English</option><option value="fr">🇫🇷 Français</option><option value="ar">🇸🇦 العربية</option>
+</select>
+<button id="theme" class="btn">🌙 <span id="themeText">Modo oscuro</span></button>
+</div>
+</div>
+
+<header class="hero">
+<img id="heroImg" alt="Gelobotte">
+<div><h1 data-i18n="title">Calculadora de Gelobottes</h1><p class="sub" data-i18n="subtitle">Ingresa tu inventario. La calculadora aprovecha los Gely que ya tienes y convierte 2 Gelés en 1 Gely cuando hace falta.</p></div>
+</header>
+
+<div class="grid">
+<section class="card">
+<h2 data-i18n="inventory">Inventario</h2>
+<div class="fields">
+<div class="field"><img id="i-vg"><label data-i18n="vertgely">Vertgely</label><input id="vertgely" type="number" min="0" value="10177"></div>
+<div class="field"><img id="i-rg"><label data-i18n="rougely">Rougely</label><input id="rougely" type="number" min="0" value="4528"></div>
+<div class="field"><img id="i-bg"><label data-i18n="blugely">Blugely</label><input id="blugely" type="number" min="0" value="7124"></div>
+<div class="field"><img id="i-f"><label data-i18n="fresa">Gelé Fresa</label><input id="fresa" type="number" min="0" value="136000"></div>
+<div class="field"><img id="i-b"><label data-i18n="blue">Gelé Blue</label><input id="blue" type="number" min="0" value="163000"></div>
+<div class="field"><img id="i-v"><label data-i18n="menta">Gelé Vert / Menta</label><input id="vert" type="number" min="0" value="120000"></div>
+</div>
+<p class="hint" data-i18n="waterHint">El agua se considera infinita, por eso no necesitas introducirla.</p>
+</section>
+
+<section class="card result">
+<img class="booticon" id="bootIcon" alt="">
+<h2 data-i18n="maximum">Máximo de Gelobottes</h2>
+<div id="boots" class="big">0</div><div class="unit" data-i18n="boots">GELOBOTTES</div>
+<div class="limits">
+<div class="lim"><span data-i18n="limitFresa">Límite Fresa</span><b id="lf">0</b></div>
+<div class="lim"><span data-i18n="limitBlue">Límite Blue</span><b id="lb">0</b></div>
+<div class="lim"><span data-i18n="limitVert">Límite Vert</span><b id="lv">0</b></div>
+</div>
+<div class="formula">
+<div class="title" data-i18n="recipeTitle">📜 Receta por 1 Gelobotte</div>
+<div class="recipe">
+<span class="chip">💧 10 Agua</span><span class="chip">🟢 6 Vertgely</span><span class="chip">🔴 6 Rougely</span><span class="chip">🔵 6 Blugely</span><span class="chip">🍓 5 Gelé Fresa</span><span class="chip">🔵 5 Gelé Blue</span>
+</div>
+<div class="note" data-i18n="recipeNote">El cálculo considera que 2 Gelés del color correspondiente permiten fabricar 1 Gely. Los Gely que ya tienes cuentan como materia prima convertida.</div>
+</div>
+</section>
+
+<section class="card">
+<h2 data-i18n="stepsTitle">Paso a paso</h2><div id="steps"></div>
+</section>
+
+<section class="card">
+<h2 data-i18n="beforeTitle">Inventario antes de las botas</h2>
+<table><thead><tr><th data-i18n="material">Material</th><th data-i18n="quantity">Cantidad</th></tr></thead><tbody id="before"></tbody></table>
+</section>
+
+<section class="card full">
+<h2 data-i18n="afterTitle">Inventario después de fabricar todo</h2>
+<table><thead><tr><th data-i18n="material">Material</th><th data-i18n="remaining">Cantidad restante</th></tr></thead><tbody id="after"></tbody></table>
+</section>
+</div>
+<footer data-i18n="footer">Receta: 10 Agua + 6 Vertgely + 6 Rougely + 6 Blugely + 5 Gelé Fresa + 5 Gelé Blue = 1 Gelobotte</footer>
+</div>
+  <script src="app.js"></script>
+</body></html>
