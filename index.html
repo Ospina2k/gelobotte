@@ -81,6 +81,24 @@
 <table><thead><tr><th data-i18n="material">Material</th><th data-i18n="quantity">Cantidad</th></tr></thead><tbody id="before"></tbody></table>
 </section>
 
+
+<section class="card full">
+<h2 data-i18n="craftTitle">Etapa de craft</h2>
+<p class="hint" data-i18n="craftHint">Cada ingrediente pesa 1 pod. Una bota usa 38 pods: 10 Agua + 6 Verdely + 6 Rogely + 6 Blugely + 5 Fresa + 5 Azul (los mismos del inventario antes de las botas).</p>
+<div class="fields craft-pods">
+<div class="field"><label data-i18n="podsLabel">Pods disponibles</label><input id="pods" type="number" min="0" value="7595"></div>
+</div>
+<div class="limits craft-summary">
+<div class="lim"><span data-i18n="perTrip">Botas por recorrido</span><b id="perTrip">0</b></div>
+<div class="lim"><span data-i18n="podsUsed">Pods usados</span><b id="podsUsed">0</b></div>
+<div class="lim"><span data-i18n="podsLeft">Pods sobrantes</span><b id="podsLeft">0</b></div>
+</div>
+<h3 class="craft-sub" data-i18n="loadTitle">Carga exacta por recorrido</h3>
+<table><thead><tr><th data-i18n="material">Material</th><th data-i18n="quantity">Cantidad</th></tr></thead><tbody id="craftLoad"></tbody></table>
+<h3 class="craft-sub" data-i18n="tripsTitle">Recorridos para el máximo</h3>
+<p id="craftTrips" class="craft-trips">—</p>
+</section>
+
 <section class="card full">
 <h2 data-i18n="afterTitle">Inventario después de fabricar todo</h2>
 <table><thead><tr><th data-i18n="material">Material</th><th data-i18n="remaining">Cantidad restante</th></tr></thead><tbody id="after"></tbody></table>

@@ -68,3 +68,7 @@ footer{text-align:center;color:var(--muted);font-size:12px;margin-top:22px}
 
 html[data-theme=dark] .select,html[data-theme=dark] .btn{background:var(--card);color:var(--ink);border-color:var(--line)}
 
+.craft-pods{max-width:320px;margin:14px 0 18px}
+.craft-summary{margin:0 0 18px}
+.craft-sub{margin:18px 0 10px;font-size:15px}
+.craft-trips{margin:0;color:var(--muted);line-height:1.5;font-weight:650}
