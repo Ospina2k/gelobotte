@@ -23,8 +23,8 @@ function calc(){
  $("boots").textContent=fmt(boots);$("lf").textContent=fmt(lf);$("lb").textContent=fmt(lb);$("lv").textContent=fmt(lv);
  const t=T[lang];
  $("steps").innerHTML=`<div class="step"><div class="num">1</div><div><b>${t.make} ${fmt(mvg)} Vertgely</b><span>${t.spend} ${fmt(mvg*2)} ${t.menta}.</span></div></div><div class="step"><div class="num">2</div><div><b>${t.make} ${fmt(mrg)} Rougely</b><span>${t.spend} ${fmt(mrg*2)} ${t.fresa}.</span></div></div><div class="step"><div class="num">3</div><div><b>${t.make} ${fmt(mbg)} Blugely</b><span>${t.spend} ${fmt(mbg*2)} ${t.blue}.</span></div></div><div class="step"><div class="num">4</div><div><b>${t.bootsAction} ${fmt(boots)} Gelobottes</b><span>10 × ${fmt(boots)} ${t.water} + 6 × ${fmt(boots)} ${t.vertgely} + 6 × ${fmt(boots)} ${t.rougely} + 6 × ${fmt(boots)} ${t.blugely}.</span></div></div>`;
- $("before").innerHTML=row("agua",t.water,"∞")+row("vertgely","Vertgely",before.vg)+row("rougely","Rougely",before.rg)+row("blugely","Blugely",before.bg)+row("fresa",t.fresa,before.f)+row("blue",t.blue,before.b)+row("menta",t.menta,before.v);
- $("after").innerHTML=row("agua",t.water,"∞",true)+row("vertgely","Vertgely",after.vg,true)+row("rougely","Rougely",after.rg,true)+row("blugely","Blugely",after.bg,true)+row("fresa",t.fresa,after.f,true)+row("blue",t.blue,after.b,true)+row("menta",t.menta,after.v,true)+row("boots",t.boots,boots,true);
+ $("before").innerHTML=row("agua",t.water,boots*10)+row("vertgely","Vertgely",before.vg)+row("rougely","Rougely",before.rg)+row("blugely","Blugely",before.bg)+row("fresa",t.fresa,before.f)+row("blue",t.blue,before.b)+row("menta",t.menta,before.v);
+ $("after").innerHTML=row("agua",t.water,0,true)+row("vertgely","Vertgely",after.vg,true)+row("rougely","Rougely",after.rg,true)+row("blugely","Blugely",after.bg,true)+row("fresa",t.fresa,after.f,true)+row("blue",t.blue,after.b,true)+row("menta",t.menta,after.v,true)+row("boots",t.boots,boots,true);
 }
 function setTheme(theme){
  const next=theme==="light"?"light":"dark";
