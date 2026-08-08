@@ -21,3 +21,8 @@ table{width:100%;border-collapse:collapse;font-size:14px}th,td{padding:10px 7px;
 footer{text-align:center;color:var(--muted);font-size:12px;margin-top:22px}
 @media(max-width:720px){.grid{grid-template-columns:1fr}.full{grid-column:auto}.hero{align-items:flex-start}.hero img{width:90px;height:90px}.limits{grid-template-columns:1fr}.field{align-items:flex-start}.field input{width:120px}}
 @media(max-width:480px){.field img{width:34px;height:34px}.field input{width:105px}.top{align-items:flex-start}.controls{flex-direction:column}}
+
+/* Recipe item icons */
+.formula .recipe .chip{display:inline-flex;align-items:center;gap:6px}
+.formula .recipe .chip img{width:28px;height:28px;object-fit:contain;vertical-align:middle}
+.formula .recipe .chip span{display:inline}
