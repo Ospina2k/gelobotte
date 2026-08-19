@@ -79,6 +79,24 @@ $("theme").addEventListener("click",()=>{
 loadPrefs();
 $("heroImg").src=IMG.boots;$("bootIcon").src=IMG.boots;
 $("i-vg").src=IMG.vertgely;$("i-rg").src=IMG.rougely;$("i-bg").src=IMG.blugely;$("i-f").src=IMG.fresa;$("i-b").src=IMG.blue;$("i-v").src=IMG.menta;
-ids=["vertgely","rougely","blugely","fresa","blue","vert","pods"].forEach(id=>$(id).addEventListener("input",()=>{if(id==="pods")localStorage.setItem("gelobotte-pods",$(id).value);calc()}));
-const savedPods=localStorage.getItem("gelobotte-pods");if(savedPods!==null)$("pods").value=savedPods;
+const FORM_IDS=["vertgely","rougely","blugely","fresa","blue","vert","pods"];
+function saveForm(){
+ const data={};
+ FORM_IDS.forEach(id=>{data[id]=$(id).value});
+ localStorage.setItem("gelobotte-form",JSON.stringify(data));
+}
+function loadForm(){
+ try{
+  const raw=localStorage.getItem("gelobotte-form");
+  if(!raw){
+   const legacyPods=localStorage.getItem("gelobotte-pods");
+   if(legacyPods!==null)$("pods").value=legacyPods;
+   return;
+  }
+  const data=JSON.parse(raw);
+  FORM_IDS.forEach(id=>{if(data[id]!=null && data[id]!=="")$(id).value=data[id]});
+ }catch(e){}
+}
+FORM_IDS.forEach(id=>$(id).addEventListener("input",()=>{saveForm();calc()}));
+loadForm();
 applyLang();
